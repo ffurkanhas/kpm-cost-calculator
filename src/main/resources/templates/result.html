@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>3D Print Cost Estimator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href="../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../css/flat-ui.min.css" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+
+<body>
+<div class="container-fluid">
+    <h1>KPM 3 Boyutlu Baskı Hesaplamar</h1>
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>Dosya Adı</th>
+                <th class="align-right">Hacim</th>
+                <th class="align-right">Ağırlık</th>
+                <th class="align-right">Filament Masrafı</th>
+                <th class="align-right">Zamanı</th>
+                <th class="align-right">Elektrik Masrafı</th>
+                <th class="align-right">Ek Ücret</th>
+                <th class="align-right">Hata Payı</th>
+                <th class="align-right">Toplam Maliyet</th>
+                <th class="align-right">Kar</th>
+                <th class="align-right">Satış Fiyatı</th>
+                <th class="align-right">Satış Fiyatı (Vergili)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="part : ${estimative.parts}">
+                <td th:text="${part.name}"></td>
+                <td class="align-right" th:text="${part.volume} + ' cm³'"></td>
+                <td class="align-right" th:text="${part.weight} + ' g'"></td>
+                <td class="align-right" th:text="${part.filament_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${part.formattedTime}"></td>
+                <td class="align-right" th:text="${part.energy_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${part.additional_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${part.failureMargin} + 'TL'"></td>
+                <td class="align-right" th:text="${part.totalCost} + 'TL'"></td>
+                <td class="align-right" th:text="${part.profit} + 'TL'"></td>
+                <td class="align-right" th:text="${part.sellPrice} + 'TL'"></td>
+                <td class="align-right" th:text="${part.finalPrice} + 'TL'"></td>
+            </tr>
+            <tr class="total">
+                <td th:text="${estimative.name}"></td>
+                <td class="align-right" th:text="${estimative.volume} + ' cm³'"></td>
+                <td class="align-right" th:text="${estimative.weight} + ' g'"></td>
+                <td class="align-right" th:text="${estimative.filament_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.formattedTime}"></td>
+                <td class="align-right" th:text="${estimative.energy_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.additional_cost} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.failureMargin} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.totalCost} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.profit} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.sellPrice} + 'TL'"></td>
+                <td class="align-right" th:text="${estimative.finalPrice} + 'TL'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../../js/vendor/jquery.min.js "></script>
+<script src="../../js/flat-ui.min.js "></script>
+</body>
+
+</html>
