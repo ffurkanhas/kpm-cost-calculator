@@ -131,7 +131,6 @@ public class EstimatorService {
         slicer.setProperties(properties);
     }
 
-    //TODO create factory
     private Slicer createSlicer(String slicerChoice) {
         if (slicerChoice == null || "slic3r".equals(slicerChoice))
             return new Slic3r();
@@ -162,7 +161,6 @@ public class EstimatorService {
             return new GCodeAnalyzer().estimate(outputFilename);
 
         } catch (Exception e) {
-            //TODO improve exception handling
             throw new RuntimeException(e.getMessage(), e);
         } finally {
             new File(inputFileName).delete();
